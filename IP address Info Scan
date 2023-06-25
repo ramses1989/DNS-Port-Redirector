@@ -1,0 +1,123 @@
+import socket
+import ssl
+import matplotlib.pyplot as plt
+import random
+
+# Step 1: Obtain information about the IP address
+def get_ip_info(ip_address):
+    # Implement logic to retrieve IP information such as geolocation, service provider, etc.
+    # You can use an IP geolocation API or a database like MaxMind's GeoIP2 to obtain IP information.
+    # Return relevant information
+    # Example: Returns a dictionary with IP information
+    ip_info = {
+        "geolocation": "United States",
+        "service_provider": "Squarespace",
+        "organization": "Squarespace"
+    }
+    return ip_info
+
+# Step 2: Perform a port scan
+def port_scan(ip_address):
+    # Implement logic to scan ports on the IP address and retrieve results
+    # You can use a library like Nmap or implement your own port scanning logic using the socket module.
+    # Return a list of open ports
+    # Example: Returns a list of open ports (randomly generated for demonstration purposes only)
+    open_ports = random.sample(range(1, 65536), 10)
+    return open_ports
+
+# Step 3: Perform SSH/HTTPS verification
+def ssh_https_check(ip_address):
+    # Implement logic to establish an SSH/HTTPS connection with the server and verify security details
+    # You can use the paramiko library for SSH verification and the requests library for HTTPS verification.
+    # Return information about the SSH/HTTPS configuration
+    # Example: Returns a dictionary with SSH/HTTPS information
+    ssh_https_info = {
+        "ssh_version": "OpenSSH 7.9",
+        "https_certificate": "Valid",
+        "tls_version": "TLS 1.3"
+    }
+    return ssh_https_info
+
+# Step 4: Analyze the results and create charts
+def analyze_results(ip_address, ip_info, open_ports, ssh_https_info):
+    # Implement logic to analyze the results and create visualizations using visualization libraries like matplotlib
+    # You can create charts that display information such as supported SSH/HTTPS protocols, vulnerabilities, etc.
+    # Example: Print the collected information for demonstration purposes
+    print("IP Information:", ip_info)
+    print("Open Ports:", open_ports)
+    print("SSH/HTTPS Information:", ssh_https_info)
+
+# Calculate the probability of a port being attacked
+def calculate_port_attack_probability(open_ports):
+    total_ports = len(open_ports)
+    attacked_ports = [80, 443, 22]  # Example: Ports commonly targeted by attackers
+    attacked_port_count = len(set(attacked_ports) & set(open_ports))
+    attack_probability = attacked_port_count / total_ports
+    return attack_probability
+
+# Calculate the probability of an IP being attacked
+def calculate_ip_attack_probability(ip_info):
+    # Implement logic to calculate the probability of an IP being attacked based on IP information
+    # You can use historical attack data, threat intelligence feeds, or machine learning models for this calculation.
+    # Return the calculated probability
+    # Example: Returns a random probability between 0 and 1 (for demonstration purposes only)
+    return random.random()
+
+# Evaluate the safety of routes and paths
+def evaluate_route_safety(routes):
+    # Implement logic to evaluate the safety of routes and paths
+    # You can use external data sources, risk assessment models, or security APIs to assess route safety.
+    # Return a dictionary with route/path as key and safety score as value
+    # Example: Returns a dictionary with random safety scores (for demonstration purposes only)
+    route_safety = {}
+    for route in routes:
+        route_safety[route] = random.randint(0, 100)
+    return route_safety
+
+# Encrypt a route or path
+def encrypt_route(route):
+    # Implement logic to encrypt a route or path
+    # You can use encryption algorithms like AES or RSA to encrypt the route.
+    # Return the encrypted route
+    # Example: Returns the original route prefixed with "Encrypted_"
+    return "Encrypted_" + route
+
+# Target IP address
+ip_address = "198.49.23.144"
+
+# Step 1: Obtain IP information
+ip_info = get_ip_info(ip_address)
+
+# Step 2: Perform port scan
+open_ports = port_scan(ip_address)
+
+# Step 3: Perform SSH/HTTPS verification
+ssh_https_info = ssh_https_check(ip_address)
+
+# Step 4: Analyze results and create charts
+analyze_results(ip_address, ip_info, open_ports, ssh_https_info)
+
+# Calculate attack probabilities
+port_attack_probability = calculate_port_attack_probability(open_ports)
+ip_attack_probability = calculate_ip_attack_probability(ip_info)
+
+# Evaluate route safety
+routes = ["Route A", "Route B", "Route C"]  # Example: List of routes
+route_safety = evaluate_route_safety(routes)
+
+# Encrypt unsafe routes
+safe_routes = [route for route, safety_score in route_safety.items() if safety_score >= 50]
+unsafe_routes = [route for route, safety_score in route_safety.items() if safety_score < 50]
+
+encrypted_routes = []
+for route in unsafe_routes:
+    encrypted_route = encrypt_route(route)
+    encrypted_routes.append(encrypted_route)
+
+# Print results
+print("Port Attack Probability:", port_attack_probability)
+print("IP Attack Probability:", ip_attack_probability)
+print("Route Safety Scores:", route_safety)
+print("Safe Routes:", safe_routes)
+print("Unsafe Routes:", unsafe_routes)
+print("Encrypted Routes:", encrypted_routes)
