@@ -1,0 +1,52 @@
+from IPython.display import display, HTML
+
+def redirect_port(ip_address, port):
+    def select_dns_server():
+        dns_servers = {
+            'Google - IPv4': ('8.8.8.8', 80),
+            'Google - IPv6': ('2001:4860:4860::8888', 80),
+            'Quad9 - IPv4': ('9.9.9.9', 80),
+            'Quad9 - IPv6': ('2620:fe::fe', 80),
+            'OpenDNS - IPv4': ('208.67.222.222', 80),
+            'OpenDNS - IPv6': ('2620:119:35::35', 80),
+            'OpenDNS - FamilyShield': ('208.67.222.123', 80),
+            'Cloudflare - IPv4': ('1.1.1.1', 80),
+            'Cloudflare - IPv6': ('2606:4700:4700::1111', 80),
+            'Verisign': ('64.6.64.6', 80),
+            'CleanBrowsing - Family Filter': ('185.228.168.168', 80),
+            'CleanBrowsing - Adult Filter': ('185.228.168.10', 80),
+            'CleanBrowsing - Security Filter': ('185.228.168.9', 80)
+        }
+        return dns_servers['Google - IPv4']  # Change to your preferred DNS server
+
+    def display_message(message):
+        display(message)
+
+    def create_redirect_html(ip, port):
+        dns_server_ip = ip
+        dns_server_port = port
+
+        redirect_html = f'''
+            <html>
+            <head>
+                <meta http-equiv="refresh" content="0; url=http://{dns_server_ip}:{dns_server_port}" />
+            </head>
+            </html>
+        '''
+
+        return redirect_html
+
+    dns_server = select_dns_server()
+    redirect_message = f"Port {port} has been redirected to the DNS server: {dns_server[0]}:{dns_server[1]}"
+    display_message(redirect_message)
+
+    redirect_html = create_redirect_html(dns_server[0], dns_server[1])
+    display(HTML(redirect_html))
+
+    redirect_message = f"Port {port} has been redirected to the DNS server: {dns_server[0]}:{dns_server[1]}"
+    print(redirect_message)
+
+# Example usage
+ip_address = "198.185.159.144"
+port = 80
+redirect_port(ip_address, port)
